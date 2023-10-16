@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "libra-cli": "workspace:*"
+    "antd": "^5.10.1",
+    "libra-cli": "workspace:*",
+    "vue2": "^1.0.0"
   }
 }

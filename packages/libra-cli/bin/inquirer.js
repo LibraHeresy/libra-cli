@@ -1,5 +1,4 @@
 const inquirer = require("inquirer");
-
 const prompt = inquirer.createPromptModule();
 
 const questions = [
@@ -30,6 +29,12 @@ const questions = [
     choices: ["vue2", "vue3", "react"],
     name: "frame",
   },
+  {
+    type: "list",
+    message: "使用什么UI组件库开发",
+    choices: ["Ant Design", "element-plus"],
+    name: "library",
+  },
 ];
 
 const inquirerPrompt = (argv) => {
@@ -46,10 +51,10 @@ const inquirerPrompt = (argv) => {
       if (frame === "react") {
         res = await prompt([
           {
-            type: "list",
-            message: "使用什么UI组件库开发",
-            choices: ["Ant Design"],
+            type: "input",
             name: "library",
+            message: "为什么不用Vue",
+            validate: (val) => true,
           },
         ]);
       }

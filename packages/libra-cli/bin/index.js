@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 const yargs = require("yargs");
 const { inquirerPrompt } = require("./inquirer");
-const { mkdirGuard, copyDir, checkMkdirExists } = require("./copy")
+const { copyFile, copyDir, checkMkdirExists, copyTemplate } = require("./copy")
 const path = require('path')
+const { install } = require('./manager');
 
 // 当 command 方法，在console.log()前面时，该方法不执行？
 // pnpm libra create --name=zhou
@@ -26,9 +27,10 @@ yargs.command(
       if(isMkdirExists) {
         console.log(`${name}文件夹已存在`)
       } else {
-        mkdirGuard(toPath)
-        copyDir(fromPath, toPath)
-        console.log(`项目新建成功`)
+        // copyDir(fromPath, toPath)
+        // copyFile(`${fromPath}/index.js`, `${toPath}/index.js`)
+        copyTemplate(`${fromPath}\\index.tpl`, `${toPath}\\index.js`, { name })
+        install(process.cwd(), answers);
       }
     })
     // console.log("argv", argv);
